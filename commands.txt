@@ -6,4 +6,7 @@
 6. npm install
 7. npm install ejs
 8. app.set('view engine', 'ejs')
-9. 
+9. npm i livereload
+10. npm i connect-livereload
+11. npm run watch
+12. 

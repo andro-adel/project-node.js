@@ -1,14 +1,18 @@
 {
   "dependencies": {
+    "connect-livereload": "^0.6.1",
     "ejs": "^3.1.6",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "livereload": "^0.9.3"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon --ext js,ejs --ignore public",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "name": "project-node",
   "version": "1.0.0",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andro-adel/project-node.js.git"

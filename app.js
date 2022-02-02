@@ -4,6 +4,24 @@ const port = 3000;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+//   for auto refresh
+
+const path = require("path");
+const livereload = require("livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, "public"));
+
+const connectLivereload = require("connect-livereload");
+app.use(connectLivereload());
+
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
+
+//   for auto refresh
+
 app.get("/", (req, res) => {
   res.redirect("/home");
 
@@ -14,9 +32,9 @@ app.get("/home", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
 
-app.get("/html", (req, res) => {
-  res.sendFile("views/index.ejs", { root: __dirname });
-});
+// app.get("/html", (req, res) => {
+//   res.sendFile("views/index.ejs", { root: __dirname });
+// });
 
 app.get("/index", (req, res) => {
   res.render("index");
