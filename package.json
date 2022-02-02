@@ -3,7 +3,8 @@
     "connect-livereload": "^0.6.1",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "livereload": "^0.9.3"
+    "livereload": "^0.9.3",
+    "mongoose": "^6.1.10"
   },
   "scripts": {
     "start": "node app.js",

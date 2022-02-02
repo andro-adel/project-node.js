@@ -20,7 +20,22 @@ liveReloadServer.server.once("connection", () => {
   }, 100);
 });
 
-//   for auto refresh
+//   mongoose
+
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://andro:Dodo123456789@cluster0.j0tau.mongodb.net/project-node-js?retryWrites=true&w=majority"
+  )
+  .then((result) => {
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // app.get("/home", (req, res) => {
 //   res.send("<h1>Home Page</h1>");
@@ -45,8 +60,4 @@ app.get("/add-new-article", (req, res) => {
 // 404
 app.use((req, res) => {
   res.status(404).send("Sorry can't find that!");
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
 });
