@@ -22,22 +22,24 @@ liveReloadServer.server.once("connection", () => {
 
 //   for auto refresh
 
-app.get("/", (req, res) => {
-  res.redirect("/home");
-
-  res.send("<h1>Index Page</h1>");
-});
-
-app.get("/home", (req, res) => {
-  res.send("<h1>Home Page</h1>");
-});
+// app.get("/home", (req, res) => {
+//   res.send("<h1>Home Page</h1>");
+// });
 
 // app.get("/html", (req, res) => {
 //   res.sendFile("views/index.ejs", { root: __dirname });
 // });
 
-app.get("/index", (req, res) => {
+app.get("/", (req, res) => {
+  res.redirect("/all-articles");
+});
+
+app.get("/all-articles", (req, res) => {
   res.render("index");
+});
+
+app.get("/add-new-article", (req, res) => {
+  res.render("add-new-article");
 });
 
 // 404
