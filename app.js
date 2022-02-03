@@ -52,12 +52,12 @@ app.get("/", (req, res) => {
   res.redirect("/all-articles");
 });
 
-app.get("/all-articles", (req, res) => {
-  res.render("index");
-});
+// app.get("/all-articles", (req, res) => {
+//   res.render("index", { mytitle: "Home" });
+// });
 
 app.get("/add-new-article", (req, res) => {
-  res.render("add-new-article");
+  res.render("add-new-article", { mytitle: "add-new-article" });
 });
 
 // post request
@@ -73,6 +73,44 @@ app.post("/all-articles", (req, res) => {
     .save()
     .then((result) => {
       res.redirect("/all-articles");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// get request
+
+app.get("/all-articles", (req, res) => {
+  Article.find()
+    .then((result) => {
+      res.render("index", { mytitle: "HOME", arrArticle: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// get data by id
+
+app.get("/all-articles/:id", (req, res) => {
+  // result =   object  inside mongo database
+
+  Article.findById(req.params.id)
+    .then((result) => {
+      res.render("details", { mytitle: "ARTICLE DETAILS", objArticle: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// delete request
+
+app.delete("/all-articles/:id", (req, res) => {
+  Article.findByIdAndDelete(req.params.id)
+    .then((params) => {
+      res.json({ mylink: "/all-articles" });
     })
     .catch((err) => {
       console.log(err);
