@@ -11,4 +11,5 @@
 11. npm run watch
 12. npm i mongoose
 13. npm install helmet --save
-14. 
+14. npm i -g heroku
+15. heroku login
