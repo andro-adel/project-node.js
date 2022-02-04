@@ -1,62 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const Article = require("../models/articleSchema");
 
-// path start with "/all-articles"
+// To import controllers file
+const articleController = require("../controllers/articleController");
 
-// get request
+// PATH start with '/all-articles'
 
-router.get("/", (req, res) => {
-  Article.find()
-    .then((result) => {
-      res.render("index", { mytitle: "HOME", arrArticle: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.get("/", articleController.article_index_get);
 
-// post request
+router.post("/", articleController.article_post);
 
-router.post("/", (req, res) => {
-  const article = new Article(req.body);
+router.get("/:id", articleController.article_details_get);
 
-  console.log(req.body);
-
-  article
-    .save()
-    .then((result) => {
-      res.redirect("/all-articles");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-// get data by id
-
-router.get("/:id", (req, res) => {
-  // result =   object  inside mongo database
-
-  Article.findById(req.params.id)
-    .then((result) => {
-      res.render("details", { mytitle: "ARTICLE DETAILS", objArticle: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-// delete request
-
-router.delete("/:id", (req, res) => {
-  Article.findByIdAndDelete(req.params.id)
-    .then((params) => {
-      res.json({ mylink: "/all-articles" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.delete("/:id", articleController.article_delete);
 
 module.exports = router;
