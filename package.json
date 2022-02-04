@@ -25,5 +25,6 @@
     "url": "https://github.com/andro-adel/project-node.js/issues"
   },
   "homepage": "https://github.com/andro-adel/project-node.js#readme",
+  "devDependencies": {},
   "description": ""
 }
