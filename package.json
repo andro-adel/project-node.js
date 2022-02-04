@@ -26,5 +26,8 @@
   },
   "homepage": "https://github.com/andro-adel/project-node.js#readme",
   "devDependencies": {},
-  "description": ""
+  "description": "",
+  "engines": {
+    "node": "16.13.1"
+    }
 }
